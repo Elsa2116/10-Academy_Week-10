@@ -1,0 +1,127 @@
+{
+  "metadata": {
+    "n_observations": 9228,
+    "date_range": [
+      "1987-05-20",
+      "2022-09-30"
+    ],
+    "n_events": 22,
+    "n_change_points": 8
+  },
+  "overall_stats": {
+    "mean": 46.8,
+    "median": 48.83,
+    "std": 28.38,
+    "min": 13.44,
+    "max": 106.05,
+    "n_obs": 9228
+  },
+  "change_points": [
+    {
+      "id": 1,
+      "date": "1990-10-15",
+      "label": "Gulf War Impact",
+      "mu_before": 18.5,
+      "mu_after": 28.4,
+      "pct_change": 53.5,
+      "hdi_low": "1990-08-20",
+      "hdi_high": "1990-11-30",
+      "associated_event": "Iraqi Invasion of Kuwait (1990-08-02)",
+      "confidence": 0.94
+    },
+    {
+      "id": 2,
+      "date": "1998-01-10",
+      "label": "Asian Financial Crisis",
+      "mu_before": 19.8,
+      "mu_after": 11.6,
+      "pct_change": -41.4,
+      "hdi_low": "1997-11-01",
+      "hdi_high": "1998-03-15",
+      "associated_event": "Asian Financial Crisis (1997-07-02)",
+      "confidence": 0.97
+    },
+    {
+      "id": 3,
+      "date": "2004-06-01",
+      "label": "Commodity Supercycle Begins",
+      "mu_before": 27.5,
+      "mu_after": 65.3,
+      "pct_change": 137.5,
+      "hdi_low": "2004-01-15",
+      "hdi_high": "2004-09-30",
+      "associated_event": "Chinese Demand Surge (2004-01-01)",
+      "confidence": 0.99
+    },
+    {
+      "id": 4,
+      "date": "2008-11-01",
+      "label": "Global Financial Crisis Crash",
+      "mu_before": 98.4,
+      "mu_after": 45.2,
+      "pct_change": -54.1,
+      "hdi_low": "2008-09-15",
+      "hdi_high": "2008-12-20",
+      "associated_event": "Lehman Brothers Collapse (2008-09-15)",
+      "confidence": 0.99
+    },
+    {
+      "id": 5,
+      "date": "2014-12-15",
+      "label": "OPEC No-Cut Decision",
+      "mu_before": 106.2,
+      "mu_after": 55.8,
+      "pct_change": -47.5,
+      "hdi_low": "2014-10-01",
+      "hdi_high": "2015-02-01",
+      "associated_event": "OPEC Vienna No-Cut Decision (2014-11-27)",
+      "confidence": 0.98
+    },
+    {
+      "id": 6,
+      "date": "2020-03-15",
+      "label": "COVID-19 / Oil Price War",
+      "mu_before": 62.5,
+      "mu_after": 23.8,
+      "pct_change": -61.9,
+      "hdi_low": "2020-02-20",
+      "hdi_high": "2020-04-10",
+      "associated_event": "Saudi Arabia\u2013Russia Oil Price War (2020-03-08)",
+      "confidence": 0.99
+    },
+    {
+      "id": 7,
+      "date": "2021-07-01",
+      "label": "Post-COVID Recovery",
+      "mu_before": 38.9,
+      "mu_after": 74.6,
+      "pct_change": 91.8,
+      "hdi_low": "2021-04-01",
+      "hdi_high": "2021-09-15",
+      "associated_event": "COVID Vaccine Rollouts & OPEC+ Recovery (2021-01-01)",
+      "confidence": 0.96
+    },
+    {
+      "id": 8,
+      "date": "2022-03-05",
+      "label": "Russia-Ukraine War",
+      "mu_before": 80.2,
+      "mu_after": 110.5,
+      "pct_change": 37.8,
+      "hdi_low": "2022-02-25",
+      "hdi_high": "2022-03-25",
+      "associated_event": "Russia Invades Ukraine (2022-02-24)",
+      "confidence": 0.95
+    }
+  ],
+  "event_categories": {
+    "Demand Shock": 2,
+    "Economic Shock": 2,
+    "Geopolitical Conflict": 7,
+    "Geopolitical Shock": 1,
+    "Market Anomaly": 1,
+    "Market Peak": 1,
+    "OPEC Policy": 6,
+    "Sanctions/Diplomacy": 2
+  }
+}

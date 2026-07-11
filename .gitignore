@@ -64,7 +64,15 @@ data/*.parquet
 data/*.h5
 
 # Outputs
-outputs/
+outputs/*
+!outputs/results.json
+!outputs/change_points.csv
+!outputs/key_events.csv
+!outputs/deliverable_summary.md
+!outputs/fig_01_price_series.png
+!outputs/fig_02_log_returns.png
+!outputs/fig_03_change_points.png
+!outputs/fig_04_event_impact.png
 figures/
 *.png
 *.pdf

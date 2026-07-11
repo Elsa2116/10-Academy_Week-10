@@ -1,0 +1,9 @@
+id,date,label,mu_before,mu_after,pct_change,hdi_low,hdi_high,associated_event,confidence
+1,1990-10-15,Gulf War Impact,18.5,28.4,53.5,1990-08-20,1990-11-30,Iraqi Invasion of Kuwait (1990-08-02),0.94
+2,1998-01-10,Asian Financial Crisis,19.8,11.6,-41.4,1997-11-01,1998-03-15,Asian Financial Crisis (1997-07-02),0.97
+3,2004-06-01,Commodity Supercycle Begins,27.5,65.3,137.5,2004-01-15,2004-09-30,Chinese Demand Surge (2004-01-01),0.99
+4,2008-11-01,Global Financial Crisis Crash,98.4,45.2,-54.1,2008-09-15,2008-12-20,Lehman Brothers Collapse (2008-09-15),0.99
+5,2014-12-15,OPEC No-Cut Decision,106.2,55.8,-47.5,2014-10-01,2015-02-01,OPEC Vienna No-Cut Decision (2014-11-27),0.98
+6,2020-03-15,COVID-19 / Oil Price War,62.5,23.8,-61.9,2020-02-20,2020-04-10,Saudi Arabia–Russia Oil Price War (2020-03-08),0.99
+7,2021-07-01,Post-COVID Recovery,38.9,74.6,91.8,2021-04-01,2021-09-15,COVID Vaccine Rollouts & OPEC+ Recovery (2021-01-01),0.96
+8,2022-03-05,Russia-Ukraine War,80.2,110.5,37.8,2022-02-25,2022-03-25,Russia Invades Ukraine (2022-02-24),0.95
