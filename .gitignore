@@ -23,7 +23,7 @@ MANIFEST
 
 # Virtual environments
 .env
-.venv
+.venv/
 env/
 venv/
 ENV/
@@ -32,7 +32,6 @@ venv.bak/
 
 # Jupyter
 .ipynb_checkpoints/
-*.ipynb_checkpoints
 
 # PyMC / ArviZ cache
 *.nc
@@ -59,12 +58,11 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Data (large files)
+# Large data files
 data/*.parquet
 data/*.h5
 
-# Outputs
-outputs/
+# Generated figures (keep docs images)
 figures/
 *.png
 *.pdf
