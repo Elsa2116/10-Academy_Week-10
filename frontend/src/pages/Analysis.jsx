@@ -1,12 +1,14 @@
 import React from 'react';
 import ChangePointChart from '../components/ChangePointChart';
+import ErrorState from '../components/ErrorState';
+import LoadingState from '../components/LoadingState';
 import { useChangePoints } from '../hooks/useApi';
 import { formatDate, formatPrice, formatPct, pctColor } from '../utils/formatters';
 
 const card = { background: '#fff', borderRadius: 12, padding: '20px 24px', boxShadow: '0 2px 12px rgba(0,0,0,0.07)', marginBottom: 24 };
 
 export default function Analysis() {
-  const { data: changePoints, loading } = useChangePoints();
+  const { data: changePoints, loading, error, refetch } = useChangePoints();
 
   return (
     <div style={{ padding: '24px 28px', maxWidth: 1400, margin: '0 auto' }}>
@@ -33,7 +35,11 @@ export default function Analysis() {
       <div style={card}>
         <div style={{ fontSize: 16, fontWeight: 700, color: '#1a237e', marginBottom: 4 }}>Price Impact per Change Point</div>
         <div style={{ fontSize: 12, color: '#888', marginBottom: 16 }}>Percentage change in posterior mean price (μ₂ − μ₁) / μ₁</div>
-        {loading ? <div style={{ padding: 60, textAlign: 'center', color: '#999' }}>Loading…</div> : (
+        {loading ? (
+          <LoadingState message="Loading change point data…" height={240} />
+        ) : error ? (
+          <ErrorState message={error} onRetry={refetch} />
+        ) : (
           <ChangePointChart changePoints={changePoints?.data} />
         )}
       </div>
@@ -41,7 +47,11 @@ export default function Analysis() {
       {/* Detailed table */}
       <div style={card}>
         <div style={{ fontSize: 16, fontWeight: 700, color: '#1a237e', marginBottom: 16 }}>Detected Change Points – Detail</div>
-        {loading ? <div style={{ color: '#999' }}>Loading…</div> : (
+        {loading ? (
+          <LoadingState message="Loading…" compact />
+        ) : error ? (
+          <ErrorState message={error} onRetry={refetch} compact />
+        ) : (
           <div style={{ overflowX: 'auto' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
               <thead>

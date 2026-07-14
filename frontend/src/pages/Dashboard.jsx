@@ -3,6 +3,8 @@ import SummaryCards from '../components/SummaryCards';
 import PriceChart from '../components/PriceChart';
 import VolatilityChart from '../components/VolatilityChart';
 import DateRangeFilter from '../components/DateRangeFilter';
+import ErrorState from '../components/ErrorState';
+import LoadingState from '../components/LoadingState';
 import { usePrices, useSummary, useChangePoints, useEvents, useVolatility } from '../hooks/useApi';
 
 const card = { background: '#fff', borderRadius: 12, padding: '20px 24px', boxShadow: '0 2px 12px rgba(0,0,0,0.07)', marginBottom: 24 };
@@ -15,11 +17,11 @@ export default function Dashboard() {
   const [showEvents, setShowEvents] = useState(false);
   const [showChangePoints, setShowChangePoints] = useState(true);
 
-  const { data: summary, loading: loadingSummary } = useSummary();
-  const { data: prices, loading: loadingPrices } = usePrices(start, end);
-  const { data: changePoints } = useChangePoints();
+  const { data: summary, loading: loadingSummary, error: errorSummary, refetch: refetchSummary } = useSummary();
+  const { data: prices, loading: loadingPrices, error: errorPrices, refetch: refetchPrices } = usePrices(start, end);
+  const { data: changePoints, error: errorCP } = useChangePoints();
   const { data: events } = useEvents();
-  const { data: volatility, loading: loadingVol } = useVolatility(start, end);
+  const { data: volatility, loading: loadingVol, error: errorVol, refetch: refetchVol } = useVolatility(start, end);
 
   const handleReset = () => { setStart('1987-01-01'); setEnd('2022-09-30'); };
 
@@ -33,9 +35,13 @@ export default function Dashboard() {
       </div>
 
       {/* Summary cards */}
-      <SummaryCards summary={summary?.recent_year ? summary : null} loading={loadingSummary} />
+      {errorSummary ? (
+        <ErrorState message={errorSummary} onRetry={refetchSummary} compact />
+      ) : (
+        <SummaryCards summary={summary?.recent_year ? summary : null} loading={loadingSummary} />
+      )}
 
-      {/* Date range filter */}
+      {/* Price chart */}
       <div style={card}>
         <div style={sectionTitle}>Price History</div>
         <div style={sectionSub}>Brent crude oil daily closing prices (USD/barrel)</div>
@@ -50,8 +56,11 @@ export default function Dashboard() {
             Show key events
           </label>
         </div>
+        {errorCP && <ErrorState message={errorCP} compact />}
         {loadingPrices ? (
-          <div style={{ padding: 60, textAlign: 'center', color: '#999' }}>Loading price data…</div>
+          <LoadingState message="Loading price data…" height={300} />
+        ) : errorPrices ? (
+          <ErrorState message={errorPrices} onRetry={refetchPrices} />
         ) : (
           <PriceChart
             prices={prices?.data}
@@ -67,7 +76,13 @@ export default function Dashboard() {
       <div style={card}>
         <div style={sectionTitle}>Market Volatility</div>
         <div style={sectionSub}>30-day rolling standard deviation of log returns — periods of high uncertainty</div>
-        {loadingVol ? <div style={{ padding: 40, textAlign: 'center', color: '#999' }}>Loading…</div> : <VolatilityChart volatility={volatility} />}
+        {loadingVol ? (
+          <LoadingState message="Loading volatility data…" height={200} />
+        ) : errorVol ? (
+          <ErrorState message={errorVol} onRetry={refetchVol} />
+        ) : (
+          <VolatilityChart volatility={volatility} />
+        )}
       </div>
     </div>
   );

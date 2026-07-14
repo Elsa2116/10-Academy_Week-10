@@ -1,11 +1,13 @@
 import React from 'react';
 import EventsTable from '../components/EventsTable';
+import ErrorState from '../components/ErrorState';
+import LoadingState from '../components/LoadingState';
 import { useEvents } from '../hooks/useApi';
 
 const card = { background: '#fff', borderRadius: 12, padding: '20px 24px', boxShadow: '0 2px 12px rgba(0,0,0,0.07)', marginBottom: 24 };
 
 export default function Events() {
-  const { data: events, loading } = useEvents();
+  const { data: events, loading, error, refetch } = useEvents();
 
   return (
     <div style={{ padding: '24px 28px', maxWidth: 1400, margin: '0 auto' }}>
@@ -27,7 +29,13 @@ export default function Events() {
       </div>
 
       <div style={card}>
-        <EventsTable events={events} loading={loading} />
+        {loading ? (
+          <LoadingState message="Loading events catalogue…" height={200} />
+        ) : error ? (
+          <ErrorState message={error} onRetry={refetch} />
+        ) : (
+          <EventsTable events={events} loading={false} />
+        )}
       </div>
     </div>
   );
